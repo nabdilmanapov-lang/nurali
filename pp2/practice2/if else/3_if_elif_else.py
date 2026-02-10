@@ -17,7 +17,7 @@ elif ((abs(x1-x2))==abs(y1-y2)):
 elif ((x1==x2) or (y1==y2)):
     print("this is the rook")
 else:
-    print("I am a Messi")
+    print("something else")
 
 
 
