@@ -7,10 +7,10 @@ else:
     print(b)
 #some basic examples
 name=input("enter your name ")
-if name=="Akylbek":
-    print("Akylbek")
+if name=="Nurali":
+    print("Nurali")
 else:
-    print("you are not Akylbek")
+    print("you are not Nurali")
 
 x=int(input())
 if(x%10==1):
