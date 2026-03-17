@@ -1,28 +1,21 @@
-#Return the absolute value of a number:
-x = abs(-7.25)
-
-#Check if all items are True:
-mylist = [True, True, True]
-x = all(mylist)
-mytuple = (0, True, False)
-x = all(mytuple)
-myset = {0, 1, 0}
-x = all(myset)
-mydict = {0 : "Apple", 1 : "Orange"}
-x = all(mydict)
-
 from functools import reduce
 # Use map() on lists
 # Squares each number
-numbers = [1, 2, 3, 4]
-squared = list(map(lambda x: x**2, numbers))
-print("Squared numbers:", squared)
+def myfunc(n):
+  return len(n)
+x = map(myfunc, ('apple', 'banana', 'cherry'))
 
 # Use filter() on lists
 # Gets even numbers
-numbers = [1, 2, 3, 4, 5, 6]
-evens = list(filter(lambda x: x % 2 == 0, numbers))
-print("Even numbers:", evens)
+ages = [5, 12, 17, 18, 24, 32]
+def myFunc(x):
+  if x < 18:
+    return False
+  else:
+    return True
+adults = filter(myFunc, ages)
+for x in adults:
+  print(x)
 
 # Aggregate with reduce()
 # Multiplies all numbers together
@@ -32,33 +25,25 @@ print("Product:", product)
 
 # Use enumerate()
 # Prints index and value
-fruits = ["apple", "banana", "cherry"]
-for index, fruit in enumerate(fruits):
-    print(index, fruit)
+x = ('apple', 'banana', 'cherry')
+y = enumerate(x)
 
 # Use zip() for paired iteration
-names = ["Alice", "Bob", "Charlie"]
-scores = [85, 90, 78]
-
-for name, score in zip(names, scores):
-    print(name, score)
+a = ("John", "Charles", "Mike")
+b = ("Jenny", "Christy", "Monica", "Vicky")
+x = zip(a, b)
 
 # Type checking
 x = 10
-
 print("Type of x:", type(x))
-
 if isinstance(x, int):
     print("x is an integer")
 
 # Type conversions
 # String to integer
 a = int("5")
-
 # Integer to float
 b = float(10)
-
 # Number to string
 c = str(25)
-
 print(a, b, c)
