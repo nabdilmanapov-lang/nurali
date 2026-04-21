@@ -1,34 +1,39 @@
 import pygame
-import player
+import sys
+from ball import Ball
 
-pygame.init()
-screen = pygame.display.set_mode((400, 200))
-pygame.display.set_caption("Music Player")
+def main():
+    pygame.init()
+    WIDTH, HEIGHT = 800, 600
+    screen = pygame.display.set_mode((WIDTH, HEIGHT))
+    pygame.display.set_caption("Moving Ball Game")
+    clock = pygame.time.Clock()
 
-font = pygame.font.Font(None, 30)
+    my_ball = Ball(WIDTH // 2, HEIGHT // 2, 25, (255, 0, 0), 20)
 
-running = True
-while running:
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            running = False
-        if event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_p: player.play_track()
-            if event.key == pygame.K_s: pygame.mixer.music.stop()
-            if event.key == pygame.K_SPACE: player.toggle_pause()
-            if event.key == pygame.K_n: player.next_track()
-            if event.key == pygame.K_b: player.prev_track()
+    running = True
+    while running:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                running = False
+            elif event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_UP:
+                    my_ball.move(0, -1, WIDTH, HEIGHT)
+                elif event.key == pygame.K_DOWN:
+                    my_ball.move(0, 1, WIDTH, HEIGHT)
+                elif event.key == pygame.K_LEFT:
+                    my_ball.move(-1, 0, WIDTH, HEIGHT)
+                elif event.key == pygame.K_RIGHT:
+                    my_ball.move(1, 0, WIDTH, HEIGHT)
 
-    screen.fill((255, 255, 255))
+        screen.fill((255, 255, 255))
+        my_ball.draw(screen)
+        pygame.display.flip()
+        
+        clock.tick(60)
 
-    text = font.render("P:play, Soace:stop, n, b: next", True, (0, 0, 0))
-    screen.blit(text, (20, 60))
-    
+    pygame.quit()
+    sys.exit()
 
-    if player.playlist:
-        track_name = font.render(f"Track: {player.playlist[player.current_index]}", True, (0, 0, 255))
-        screen.blit(track_name, (20, 40))
-
-    pygame.display.flip()
-
-pygame.quit()
+if __name__ == "__main__":
+    main()
